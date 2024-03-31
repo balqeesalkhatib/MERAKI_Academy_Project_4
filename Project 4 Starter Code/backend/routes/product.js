@@ -6,6 +6,7 @@ const { createProduct,
      readByCategoryId,
      readById,
      updateProduct,
+     DeleteProductById,
      } = require("../controllers/product");
 productRouter.post(
   "/:id/product",
@@ -16,4 +17,5 @@ productRouter.post(
 productRouter.get("/:id/product", authentication, readByCategoryId);
 productRouter.get("/product/:id",authentication,readById)
 productRouter.put("/product/:id",authentication,authorization("update"),updateProduct)
+productRouter.delete("/product/:id",authentication,authorization("delete"),DeleteProductById)
 module.exports = productRouter;

@@ -97,4 +97,30 @@ const updateProduct=(req,res)=>{
         });
       })
 }
-module.exports = { createProduct, readByCategoryId, readById ,updateProduct};
+const DeleteProductById =(req,res)=>{
+const {id}=req.params;
+productModel.findOneAndDelete({_id:id})
+.then((result)=>{
+    if(!result){
+        res.status(404).json({
+            success: false,
+            message: `The product with ${id} not found`,
+                     });
+    }
+    else{
+        res.status(201).json({
+            success: true,
+            message: `The product with ${id} has been deleted successfully`,
+        
+          });
+    }
+})
+.catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Server error`,
+      error: err.message,
+    });
+  })
+}
+module.exports = { createProduct, readByCategoryId, readById ,updateProduct,DeleteProductById };
