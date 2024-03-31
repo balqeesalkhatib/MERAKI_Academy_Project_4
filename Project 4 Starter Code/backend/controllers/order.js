@@ -47,4 +47,31 @@ const getOrder = (req, res) => {
       });
     });
 };
-module.exports = { createOrder, getOrder };
+const deleteOrder=(req,res)=>{
+const {id}=req.params;
+orderModel.findByIdAndDelete(id)
+.then((result)=>{
+    console.log(req.token.userId);
+       if(!result){
+        res.status(404).json({
+            success: false,
+            message: `The product with ${id} not found`,
+                     });
+    }
+    else{
+        res.status(201).json({
+            success: true,
+            message: `The product with ${id} has been deleted successfully`,
+        
+          });
+    }
+})
+.catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Server error`,
+      error: err.message,
+    });
+  })
+}
+module.exports = { createOrder, getOrder,deleteOrder };
