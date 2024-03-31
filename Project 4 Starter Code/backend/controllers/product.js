@@ -78,4 +78,23 @@ const readById = (req, res) => {
       });
     });
 };
-module.exports = { createProduct, readByCategoryId, readById };
+const updateProduct=(req,res)=>{
+    const { name, description, price, category, image}=req.body
+    const {id}=req.params
+    productModel.findOneAndUpdate({_id:id},{ name, description, price, category, image},{ new: true})
+    .then((result) => {
+        res.status(201).json({
+          success: true,
+          message: `The product with ${id} has been updated successfully`,
+          result: result,
+        });
+      })
+    .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server error`,
+          error: err.message,
+        });
+      })
+}
+module.exports = { createProduct, readByCategoryId, readById ,updateProduct};

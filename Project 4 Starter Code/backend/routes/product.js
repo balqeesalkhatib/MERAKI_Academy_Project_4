@@ -4,7 +4,9 @@ const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 const { createProduct,
      readByCategoryId,
-     readById } = require("../controllers/product");
+     readById,
+     updateProduct,
+     } = require("../controllers/product");
 productRouter.post(
   "/:id/product",
   authentication,
@@ -13,4 +15,5 @@ productRouter.post(
 );
 productRouter.get("/:id/product", authentication, readByCategoryId);
 productRouter.get("/product/:id",authentication,readById)
+productRouter.put("/product/:id",authentication,authorization("update"),updateProduct)
 module.exports = productRouter;
