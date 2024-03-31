@@ -23,7 +23,7 @@ const createOrder = (req, res) => {
 const getOrder = (req, res) => {
   const { id } = req.params;
   orderModel
-    .find({user:id})
+    .find({ user: id })
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -35,7 +35,6 @@ const getOrder = (req, res) => {
         res.status(404).json({
           success: false,
           message: `User with ${id} has no order yet`,
-        
         });
       }
     })
@@ -47,31 +46,30 @@ const getOrder = (req, res) => {
       });
     });
 };
-const deleteOrder=(req,res)=>{
-const {id}=req.params;
-orderModel.findByIdAndDelete(id)
-.then((result)=>{
-    console.log(req.token.userId);
-       if(!result){
+const deleteOrder = (req, res) => {
+  const { id } = req.params;
+  orderModel
+    .findByIdAndDelete(id)
+    .then((result) => {
+      if (!result) {
         res.status(404).json({
-            success: false,
-            message: `The product with ${id} not found`,
-                     });
-    }
-    else{
+          success: false,
+          message: `The product with ${id} not found`,
+        });
+      } else {
         res.status(201).json({
-            success: true,
-            message: `The product with ${id} has been deleted successfully`,
-        
-          });
-    }
-})
-.catch((err) => {
-    res.status(500).json({
-      success: false,
-      message: `Server error`,
-      error: err.message,
+          success: true,
+          message: `The product with ${id} has been deleted successfully`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server error`,
+        error: err.message,
+      });
     });
-  })
-}
-module.exports = { createOrder, getOrder,deleteOrder };
+};
+
+module.exports = { createOrder, getOrder, deleteOrder };

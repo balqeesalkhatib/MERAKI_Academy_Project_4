@@ -2,6 +2,7 @@ const express = require("express");
 const productRouter = express.Router();
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
+const productCheck=require('../middleware/productCheck')
 const { createProduct,
      readByCategoryId,
      readById,
@@ -11,7 +12,7 @@ const { createProduct,
 productRouter.post(
   "/:id/product",
   authentication,
-  authorization("create"),
+  authorization("create"),productCheck,
   createProduct
 );
 productRouter.get("/:id/product", authentication, readByCategoryId);
