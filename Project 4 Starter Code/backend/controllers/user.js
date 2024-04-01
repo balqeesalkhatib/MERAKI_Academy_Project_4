@@ -9,11 +9,12 @@ const register = (req, res) => {
     country,
     email,
     password,
-    role,
+    role:"6607fa03c8f72b090fcb9972",
   });
   newUser
     .save()
     .then((result) => {
+      console.log(result);
       res.status(201).json({
         success: true,
         message: `Account Created Successfully`,
@@ -22,6 +23,7 @@ const register = (req, res) => {
     })
     .catch((err) => {
       console.log(err.keyPattern);
+      console.log(err);
       if (err.keyPattern) {
         return res.status(409).json({
           success: false,

@@ -8,21 +8,22 @@ import Login from "./components/Login";
 import { useNavigate } from "react-router-dom";
 import Category from "./components/Category";
 import NotFound from "./components/NotFound";
+import Home from "./components/Home";
 export const AppContext = createContext();
 const App = () => {
   const navigate=useNavigate()
   useEffect(
     ()=>{
-navigate('/login')
+navigate('/home')
     },[]
   )
   return (
     <AppContext.Provider value={navigate}>
       <div className="App">
-        <h1>Item Exchange</h1>
+      <h1>Item Exchange</h1>
         <NavBar />
-        
-        <Routes>
+         <Routes>
+          <Route path="/home" element={<Home/>}></Route>
           <Route path="/category" element={<Category/>}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>

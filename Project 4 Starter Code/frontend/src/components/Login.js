@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React from 'react'
-
+import { useState } from 'react';
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   return (
     <div>
-        <input placeholder='Email' />
-        <input placeholder='Password' />
-        <button>Login</button>
+      
     </div>
   )
 }
