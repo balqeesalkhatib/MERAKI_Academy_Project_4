@@ -15,7 +15,6 @@ const Register = () => {
         type="text"
         onChange={(e) => {
           setFirst(e.target.value);
-          console.log(firstName);
         }}
       />
       <br />
@@ -50,11 +49,6 @@ const Register = () => {
           setPassword(e.target.value);
         }}
       />
-      {console.log(  firstName,
-              lastName,
-              country,
-              password,
-              email)}
       <br />
       <button
         onClick={() => {
