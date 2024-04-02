@@ -29,7 +29,7 @@ navigate('/home')
           <Route path="/category" element={<Category/>}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/product" element={<Products/>}></Route>
+          <Route path="/product/:id" element={<Products/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>

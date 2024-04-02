@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../App";
+import Products from "./Products";
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -19,10 +20,7 @@ const Category = () => {
         setName(err.response.data.message);
       });
   }, []);
-  const getById = (id) => {
-    console.log(id);
-  };
-  return (
+    return (
     <>
       <div>====Categories====</div>
       {/* {id.length && console.log(id)} */}
@@ -31,20 +29,8 @@ const Category = () => {
           return (
             <div
               key={index}
-              onClick={() => {
-                axios
-                  .get(`http://localhost:5000/category/${elem._id}/product`, {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  })
-                  .then((res) => {
-                    console.log(res.data.result);
-                    setMessage(res.data.result);
-                  })
-                  .catch((err) => {
-                    setError(err.response.data.message);
-                  });
+              onClick={()=>{
+                navigate(`/product/${elem._id}`)
               }}
             >
               <h2>{elem.name}</h2> <p>{elem.description}</p>
