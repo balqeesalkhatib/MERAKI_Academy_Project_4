@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../App";
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -32,8 +33,18 @@ const Category = () => {
               onClick={()=>{
                 navigate(`/product/${elem._id}`)
               }}
+              className="modal show"
+              style={{ display: 'block', position: 'initial' }}
             >
-              <h2>{elem.name}</h2> <p>{elem.description}</p>
+              <Modal.Dialog>
+              <Modal.Header >
+              <Modal.Title>{elem.name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+          <p>{elem.description}.</p>
+        </Modal.Body>
+                          </Modal.Dialog>
+              
             </div>
           );
         })}
