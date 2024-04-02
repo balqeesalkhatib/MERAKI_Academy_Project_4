@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../App";
-
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 const Products = () => {
   let { id } = useParams();
+  const navigate = useNavigate();
   const { token, setToken } = useContext(AppContext);
   const [product, setProduct] = useState([]);
   const [error, setError] = useState("");
@@ -39,13 +41,9 @@ const Products = () => {
           );
         })}
       <p>{error}</p>
-      <button
-        onClick={() => {
+      <Button variant="dark"  onClick={() => {
           navigate(-1);
-        }}
-      >
-        Back
-      </button>
+        }}>Back</Button>{' '}
       {/* <div>Create Product</div>
       <select></select> */}
     </>

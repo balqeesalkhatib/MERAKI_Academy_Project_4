@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../App";
-import Products from "./Products";
+import Button from 'react-bootstrap/Button';
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -37,13 +37,10 @@ const Category = () => {
             </div>
           );
         })}
-      <button
-        onClick={() => {
+     
+      <Button variant="dark"  onClick={() => {
           navigate(-1);
-        }}
-      >
-        Back
-      </button>
+        }}>Back</Button>{' '}
       <p>{error}</p>
     </>
   );

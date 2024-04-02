@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
 const Register = () => {
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
@@ -10,9 +11,10 @@ const Register = () => {
   const [message, setMessage] = useState("");
   return (
     <div>
+      <br /> <br />
       <input
         placeholder="First Name"
-        type="text"
+        type="text" className="form-control"
         onChange={(e) => {
           setFirst(e.target.value);
         }}
@@ -20,7 +22,7 @@ const Register = () => {
       <br />
       <input
         placeholder="Last Name"
-        type="text"
+        type="text"  className="form-control"
         onChange={(e) => {
           setLast(e.target.value);
         }}
@@ -28,7 +30,7 @@ const Register = () => {
       <br />
       <input
         placeholder="Country"
-        type="text"
+        type="text"  className="form-control"
         onChange={(e) => {
           setCountry(e.target.value);
         }}
@@ -36,7 +38,7 @@ const Register = () => {
       <br />
       <input
         placeholder="Email"
-        type="email"
+        type="email"  className="form-control"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
@@ -44,13 +46,13 @@ const Register = () => {
       <br />
       <input
         placeholder="Password"
-        type="password"
+        type="password"  className="form-control"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
       <br />
-      <button
+      {/* <button
         onClick={() => {
           axios
             .post("http://localhost:5000/users/register", {
@@ -69,7 +71,23 @@ const Register = () => {
         }}
       >
         Register
-      </button>
+      </button> */}
+      <Button variant="primary" onClick={() => {
+          axios
+            .post("http://localhost:5000/users/register", {
+              firstName,
+              lastName,
+              country,
+              password,
+              email,
+            })
+            .then((res) => {
+              setMessage(res.data.message);
+            })
+            .catch((err) => {
+              setMessage(err.response.data.message);
+            });
+        }}>Register</Button>{' '}
       <p>{message}</p>
     </div>
   );
