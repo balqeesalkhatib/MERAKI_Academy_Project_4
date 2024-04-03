@@ -34,9 +34,9 @@ const Products = () => {
           return (
             <div key={index}>
               <h3>{elem.category.name}</h3>
-              <h4>{elem.name}</h4>
-              <p>{elem.description}</p> <p>{elem.price}</p>
-              <img src={elem.image} alt={elem.category.name} />
+               <img src={elem.image} alt={elem.category.name} onClick={()=>{
+                navigate(`/${elem._id}`)
+              }}/>
             </div>
           );
         })}

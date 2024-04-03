@@ -10,13 +10,14 @@ import Category from "./components/Category";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import Products from "./components/Products";
+import OneProduct from "./components/OneProduct";
 export const AppContext = createContext();
 const App = () => {
   const [token, setToken] = useState("");
   const navigate=useNavigate()
   useEffect(
     ()=>{
-navigate('/home')
+navigate('/login')
     },[]
   )
   return (
@@ -30,6 +31,7 @@ navigate('/home')
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/product/:id" element={<Products/>}></Route>
+          <Route path="/:id" element={<OneProduct/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
