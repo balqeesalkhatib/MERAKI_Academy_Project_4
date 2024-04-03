@@ -12,7 +12,7 @@ const { createProduct,
 productRouter.post(
   "/:id/product",
   authentication,
-  authorization("create"),productCheck,
+  authorization("create"),
   createProduct
 );
 productRouter.get("/:id/product", authentication, readByCategoryId);
