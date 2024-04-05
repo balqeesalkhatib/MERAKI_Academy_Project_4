@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../App";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import Image from "react-bootstrap/Image";
+import { Container } from "react-bootstrap";
 const Products = () => {
   let { id } = useParams();
   const navigate = useNavigate();
@@ -27,23 +29,41 @@ const Products = () => {
   return (
     <>
       {/* { product.length && console.log(product)} */}
+      <br />
+      <br />
       <h2>Products</h2>
       {product.length &&
         product.map((elem, index) => {
-          console.log(elem.image);
           return (
             <div key={index}>
-              <h3>{elem.category.name}</h3>
-               <img src={elem.image} alt={elem.category.name} onClick={()=>{
-                navigate(`/${elem._id}`)
-              }}/>
+              <Container>
+                <br />
+                <br />
+                <br />
+                <h4>{elem.category.name}</h4>
+                <br />
+                <Image
+                  src={elem.image}
+                  alt={elem.category.name}
+                  onClick={() => {
+                    navigate(`/${elem._id}`);
+                  }}
+                />
+              </Container>
             </div>
           );
         })}
       <p>{error}</p>
-      <Button variant="dark"  onClick={() => {
+      <br />
+      <br />
+      <Button
+        variant="dark"
+        onClick={() => {
           navigate(-1);
-        }}>Back</Button>{' '}
+        }}
+      >
+        Back
+      </Button>{" "}
       {/* <div>Create Product</div>
       <select></select> */}
     </>

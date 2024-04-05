@@ -5,11 +5,13 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import { useNavigate } from "react-router-dom";
 const OneProduct = () => {
   let { id } = useParams();
   const { token, setToken } = useContext(AppContext);
   const [oneProduct, setOneProduct] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:5000/category/product/${id}`, {

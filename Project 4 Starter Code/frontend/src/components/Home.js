@@ -67,39 +67,50 @@ const Home = () => {
           />
           <br />
           category list:
-          <select onChange={(e) => {
+          <select
+            onChange={(e) => {
               setCategory(e.target.value);
-            }}>
+            }}
+          >
             {" "}
             {category1.length &&
               category1.map((elem, i) => {
-                return <option id={elem._id}key={i} value={elem._id}>{elem.name}</option>;
+                return (
+                  <option id={elem._id} key={i} value={elem._id}>
+                    {elem.name}
+                  </option>
+                );
               })}
           </select>
           <br />
           {console.log(category)}
           <Button
             variant="primary"
-            ////id should be the id of chosen option dropdown list
             onClick={() => {
-              axios.post(`http://localhost:5000/category/${category}/product`,{name,image,price,description,category}, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }).then((res) => {
-                // setError(res.data.result);
-                console.log(res.data.result);
-              })
-              .catch((err) => {
-                setError(err.response.data.message);
-              });
+              axios
+                .post(
+                  `http://localhost:5000/category/${category}/product`,
+                  { name, image, price, description, category },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                )
+                .then((res) => {
+                  // setError(res.data.result);
+                  setError(res.data.message);
+                })
+                .catch((err) => {
+                  setError(err.response.data.message);
+                });
             }}
           >
             ADD
           </Button>
         </Card.Body>
       </Card>
-<p>{error}</p>
+      <p>{error}</p>
       {/* <Link to={'/product'}>Products</Link> */}
     </>
   );
