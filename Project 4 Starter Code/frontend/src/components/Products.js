@@ -49,6 +49,23 @@ const Products = () => {
                     navigate(`/${elem._id}`);
                   }}
                 />
+                <br />
+                <br />
+                {console.log(product)}
+                <Button variant="danger" onClick={()=>{
+                  axios.delete(`http://localhost:5000/category/product/${elem._id}`, {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }).then((result)=>{
+                   setProduct(product.filter((one,i)=>{
+                      return one._id!==elem._id
+                    }));
+                  }).catch((err)=>{
+                    setError(err.response.data.message)
+                  })
+                }}>Delete</Button>{' '}
+                <Button variant="secondary">Update</Button>
               </Container>
             </div>
           );
@@ -64,9 +81,7 @@ const Products = () => {
       >
         Back
       </Button>{" "}
-      {/* <div>Create Product</div>
-      <select></select> */}
-    </>
+         </>
   );
 };
 

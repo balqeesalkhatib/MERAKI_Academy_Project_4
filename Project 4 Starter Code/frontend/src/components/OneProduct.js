@@ -30,7 +30,7 @@ const OneProduct = () => {
   return (
     <>
       {oneProduct && (
-        <Container>
+        <Container >
           <br />
           <br />
           <br />
