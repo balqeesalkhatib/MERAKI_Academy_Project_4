@@ -65,7 +65,10 @@ const Products = () => {
                     setError(err.response.data.message)
                   })
                 }}>Delete</Button>{' '}
-                <Button variant="secondary">Update</Button>
+                <Button variant="secondary"
+                onClick={()=>{
+                  navigate(`/update/${elem._id}`)
+                }}>Update</Button>
               </Container>
             </div>
           );

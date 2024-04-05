@@ -11,6 +11,7 @@ import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import Products from "./components/Products";
 import OneProduct from "./components/OneProduct";
+import UpdateProduct from "./components/UpdateProduct";
 export const AppContext = createContext();
 const App = () => {
   const [token, setToken] = useState("");
@@ -32,6 +33,7 @@ navigate('/login')
           <Route path="/login" element={<Login />}></Route>
           <Route path="/product/:id" element={<Products/>}></Route>
           <Route path="/:id" element={<OneProduct/>}></Route>
+          <Route path="/update/:id" element={<UpdateProduct/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
