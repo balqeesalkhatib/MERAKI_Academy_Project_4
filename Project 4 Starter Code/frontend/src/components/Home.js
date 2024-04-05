@@ -11,14 +11,14 @@ const Home = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const [category1, setCategory1] = useState("");
   const [category, setCategory] = useState("");
-  const [categoryId, setCategoryId] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:5000/category")
       .then((res) => {
-        setCategory(res.data.result);
+        setCategory1(res.data.result);
       })
       .catch((err) => {
         setName(err.response.data.message);
@@ -67,36 +67,39 @@ const Home = () => {
           />
           <br />
           category list:
-          <select>
+          <select onChange={(e) => {
+              setCategory(e.target.value);
+            }}>
             {" "}
-            {category.length &&
-              category.map((elem, i) => {
-                return <option id={elem._id}key={i}>{elem.name}</option>;
+            {category1.length &&
+              category1.map((elem, i) => {
+                return <option id={elem._id}key={i} value={elem._id}>{elem.name}</option>;
               })}
           </select>
-          {console.log(document.getElementById("660943201dc1cf8c46c58e0f"))}
           <br />
+          {console.log(category)}
           <Button
             variant="primary"
             ////id should be the id of chosen option dropdown list
-            // onClick={() => {
-            //   axios.post(`http://localhost:5000/category/${id}/product`,{name,image,price,description,categoryId}, {
-            //     headers: {
-            //       Authorization: `Bearer ${token}`,
-            //     },
-            //   }).then((res) => {
-            //     setError(res.data.result);
-            //   })
-            //   .catch((err) => {
-            //     setError(err.response.data.message);
-            //   });
-            // }}
+            onClick={() => {
+              axios.post(`http://localhost:5000/category/${category}/product`,{name,image,price,description,category}, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }).then((res) => {
+                // setError(res.data.result);
+                console.log(res.data.result);
+              })
+              .catch((err) => {
+                setError(err.response.data.message);
+              });
+            }}
           >
             ADD
           </Button>
         </Card.Body>
       </Card>
-
+<p>{error}</p>
       {/* <Link to={'/product'}>Products</Link> */}
     </>
   );
