@@ -12,6 +12,8 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import OneProduct from "./components/OneProduct";
 import UpdateProduct from "./components/UpdateProduct";
+import AddProduct from "./components/AddProduct";
+import AddOrder from "./components/AddOrder"
 export const AppContext = createContext();
 const App = () => {
   const [token, setToken] = useState("");
@@ -34,6 +36,8 @@ navigate('/login')
           <Route path="/product/:id" element={<Products/>}></Route>
           <Route path="/:id" element={<OneProduct/>}></Route>
           <Route path="/update/:id" element={<UpdateProduct/>}></Route>
+          <Route path="/addProduct" element={<AddProduct/>}></Route>
+          <Route path="/addOrder" element={<AddOrder/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
