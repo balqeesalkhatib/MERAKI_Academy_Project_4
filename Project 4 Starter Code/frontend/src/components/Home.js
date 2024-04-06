@@ -16,7 +16,7 @@ const Home = () => {
 <Button variant="success" size="lg" onClick={()=>{
   navigate("/addOrder")
 }}>Add Order</Button>{' '}
-      {/* <Link to={'/product'}>Products</Link> */}
+      {/* remove button add cards with images*/}
     </>
   );
 };
