@@ -16,6 +16,12 @@ const Home = () => {
 <Button variant="success" size="lg" onClick={()=>{
   navigate("/addOrder")
 }}>Add Order</Button>{' '}
+<br/>
+<br/>
+<br/>
+<Button variant="success" size="lg" onClick={()=>{
+  navigate("/orders")
+}}>Show all Orders</Button>{' '}
       {/* remove button add cards with images*/}
     </>
   );
