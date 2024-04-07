@@ -4,19 +4,21 @@ import axios from "axios";
 import { AppContext } from "../App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Home from "./Home"
+import Home from "./Home";
+import Image from "react-bootstrap/Image";
+
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
-   const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("http://localhost:5000/category")
       .then((res) => {
         setCategory(res.data.result);
-              })
+      })
       .catch((err) => {
         setName(err.response.data.message);
       });
@@ -41,12 +43,16 @@ const Category = () => {
                   <Modal.Title>{elem.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                  <Image src={elem.image} />
                   <p>{elem.description}.</p>
                 </Modal.Body>
               </Modal.Dialog>
             </div>
           );
         })}
+      {/* {imageArray.map((element,i)=>{
+                  return <Image src={element}/>
+                 })} */}
       <Button
         variant="dark"
         onClick={() => {
