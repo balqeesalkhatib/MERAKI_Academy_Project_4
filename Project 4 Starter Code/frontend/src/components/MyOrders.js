@@ -62,10 +62,10 @@ const MyOrders = () => {
                 X
               </Button>{" "}
               {console.log(one._id)}
-              <Button
+              {/* <Button
               onClick={()=>{
                 navigate(`/updateOrder/${one._id}`)
-              }}>Update</Button>
+              }}>Update</Button> */}
             </div>
           );
         })}
