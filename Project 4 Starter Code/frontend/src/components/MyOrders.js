@@ -5,10 +5,12 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 const MyOrders = () => {
   const { token, setToken } = useContext(AppContext);
   const [oneOrder, setOneOrder] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   let id;
   useEffect(() => {
     if (token) {
@@ -41,8 +43,7 @@ const MyOrders = () => {
                   <Image src={one.product} roundedCircle />
                 </Card.Body>
               </Card>
-              {console.log(one._id)}
-              <Button
+             <Button
                 variant="danger"
                 onClick={() => {
                   axios.delete(`http://localhost:5000/order/${one._id}`, {
@@ -60,11 +61,25 @@ const MyOrders = () => {
               >
                 X
               </Button>{" "}
-              <Button>Update</Button>
+              {console.log(one._id)}
+              <Button
+              onClick={()=>{
+                navigate(`/updateOrder/${one._id}`)
+              }}>Update</Button>
             </div>
           );
         })}
       <p>{error}</p>
+      <br />
+      <br />
+      <Button
+        variant="dark"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>{" "}
     </>
   );
 };
