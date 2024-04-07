@@ -43,20 +43,25 @@ const MyOrders = () => {
                   <Image src={one.product} roundedCircle />
                 </Card.Body>
               </Card>
-             <Button
+              <Button
                 variant="danger"
                 onClick={() => {
-                  axios.delete(`http://localhost:5000/order/${one._id}`, {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }).then((result)=>{
-                    setOneOrder(oneOrder.filter((elem,i)=>{
-                       return elem._id!==one._id
-                     }));
-                   }).catch((err)=>{
-                     setError(err.response.data.message)
-                   })
+                  axios
+                    .delete(`http://localhost:5000/order/${one._id}`, {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    })
+                    .then((result) => {
+                      setOneOrder(
+                        oneOrder.filter((elem, i) => {
+                          return elem._id !== one._id;
+                        })
+                      );
+                    })
+                    .catch((err) => {
+                      setError(err.response.data.message);
+                    });
                 }}
               >
                 X

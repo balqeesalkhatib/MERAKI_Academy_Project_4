@@ -16,6 +16,7 @@ import AddProduct from "./components/AddProduct";
 import AddOrder from "./components/AddOrder";
 import Orders from "./components/Orders";
 import MyOrders from "./components/MyOrders";
+import Logout from "./components/Logout";
 export const AppContext = createContext();
 const App = () => {
   const [token, setToken] = useState("");
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/addOrder" element={<AddOrder />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/my" element={<MyOrders />}></Route>
+          <Route path="/logout" element={<Logout/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
