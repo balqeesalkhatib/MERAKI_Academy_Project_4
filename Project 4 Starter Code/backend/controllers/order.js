@@ -1,5 +1,22 @@
 const orderModel = require("../models/orderSchema");
 // send token
+const getAllOrders=(req,res)=>{
+  orderModel.find({})
+  .then((result) => {
+    res.status(200).json({
+      success: true,
+      message: `All the orders`,
+      result: result,
+    });
+  })
+  .catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Server error`,
+      error: err.message,
+    });
+  });
+}
 const createOrder = (req, res) => {
   const { status, date, product, user } = req.body;
   const newOrder = new orderModel({ status, date, product, user });
@@ -72,4 +89,4 @@ const deleteOrder = (req, res) => {
     });
 };
 
-module.exports = { createOrder, getOrder, deleteOrder };
+module.exports = { createOrder, getOrder, deleteOrder,getAllOrders };
