@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 const NavBar = () => {
   return (
     <>
-     <Navbar expand="lg" className="bg-body-tertiary">
+     <Navbar expand="lg" className="navbar navbar-dark bg-success" >
      <Container> 
      <Nav.Link as={Link} to="/register">Register</Nav.Link>
      <Nav.Link as={Link} to="/login">Login</Nav.Link>
@@ -21,3 +21,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+// data-bs-theme="dark"

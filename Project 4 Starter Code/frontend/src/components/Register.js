@@ -72,7 +72,7 @@ const Register = () => {
       >
         Register
       </button> */}
-      <Button variant="primary" onClick={() => {
+      <Button variant="success" onClick={() => {
           axios
             .post("http://localhost:5000/users/register", {
               firstName,

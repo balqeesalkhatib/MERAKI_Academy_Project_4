@@ -41,7 +41,7 @@ const Login = () => {
         }}>Login</button> */}
       <br /> <br />
       <Button
-        variant="primary"
+        variant="success"
         onClick={() => {
           axios
             .post("http://localhost:5000/users/login", { email, password })

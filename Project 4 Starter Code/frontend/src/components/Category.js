@@ -23,7 +23,7 @@ const Category = () => {
   }, []);
   return (
     <>
-      <div>====Categories====</div>
+      <div>Categories</div>
       {/* {id.length && console.log(id)} */}
       {category.length &&
         category.map((elem, index) => {
