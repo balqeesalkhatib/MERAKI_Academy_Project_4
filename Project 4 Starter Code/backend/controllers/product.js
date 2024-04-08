@@ -2,14 +2,14 @@ const productModel = require("../models/productSchema");
 //should send token
 const createProduct = (req, res) => {
   //by user
-  const { name, description, price, category, image } = req.body;
+  const { name, description, price, category, image ,user} = req.body;
   //   const user = req.token.userId;
   //   console.log(user);
   const newProduct = new productModel({
     name,
     description,
     price,
-    // user,
+    user,
     category,
     image,
   });
@@ -79,9 +79,9 @@ const readById = (req, res) => {
     });
 };
 const updateProduct=(req,res)=>{
-    const { name, description, price, category, image}=req.body
+    const { name, description, price, category, image,user}=req.body
     const {id}=req.params
-    productModel.findOneAndUpdate({_id:id},{ name, description, price, category, image},{ new: true})
+    productModel.findOneAndUpdate({_id:id},{ name, description, price, category, image,user},{ new: true})
     .then((result) => {
         res.status(201).json({
           success: true,

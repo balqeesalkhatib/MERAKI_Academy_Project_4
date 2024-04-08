@@ -4,9 +4,12 @@ import axios from "axios";
 import { AppContext } from "../App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Home from "./Home";
 import Image from "react-bootstrap/Image";
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { ListGroup } from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -25,7 +28,8 @@ const Category = () => {
   }, []);
   return (
     <>
-      <div>Categories</div>
+    <br/>
+   <p>{error}</p>
       {/* {id.length && console.log(id)} */}
       {category.length &&
         category.map((elem, index) => {
@@ -33,11 +37,35 @@ const Category = () => {
             <div
               key={index}
               onClick={() => {
-                navigate(`/product/${elem._id}`);
+                if(token){
+                  navigate(`/product/${elem._id}`);
+                }
+                else{
+                  // setError('You have to login')
+                 setError( <Alert  variant='warning'>
+                 <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+               <p>Warning !
+               You have to login.</p>
+             </Alert>)
+                }
               }}
               className="modal show"
               style={{ display: "block", position: "initial" }}
             >
+              {/* <Container>
+              <Row>
+              <Col  md={4}>
+                <ListGroup>
+                  <ListGroup.Item>
+                  {elem.name}
+                <Image src={elem.image} />
+                {elem.description}
+                  </ListGroup.Item>
+               
+                </ListGroup>
+              </Col>
+                </Row> 
+              </Container> */}
               <Modal.Dialog>
                 <Modal.Header>
                   <Modal.Title>{elem.name}</Modal.Title>
@@ -50,9 +78,6 @@ const Category = () => {
             </div>
           );
         })}
-      {/* {imageArray.map((element,i)=>{
-                  return <Image src={element}/>
-                 })} */}
       <Button
         variant="dark"
         onClick={() => {
@@ -61,7 +86,8 @@ const Category = () => {
       >
         Back
       </Button>{" "}
-      <p>{error}</p>
+     
+      
     </>
   );
 };
