@@ -17,68 +17,49 @@ const Register = () => {
       <input
         placeholder="First Name"
         type="text"
-        className="form-control"
+        className="w-75"
         onChange={(e) => {
           setFirst(e.target.value);
         }}
       />
-      <br />
+      <br />  <br />
       <input
         placeholder="Last Name"
         type="text"
-        className="form-control"
+        className="w-75"
         onChange={(e) => {
           setLast(e.target.value);
         }}
       />
-      <br />
+      <br />  <br />
       <input
         placeholder="Country"
         type="text"
-        className="form-control"
+        className="w-75"
         onChange={(e) => {
           setCountry(e.target.value);
         }}
       />
-      <br />
+      <br />  <br />
       <input
         placeholder="Email"
         type="email"
-        className="form-control"
+        className="w-75"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
-      <br />
+      <br />  <br />
       <input
         placeholder="Password"
         type="password"
-        className="form-control"
+        className="w-75"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
       <br />
-      {/* <button
-        onClick={() => {
-          axios
-            .post("http://localhost:5000/users/register", {
-              firstName,
-              lastName,
-              country,
-              password,
-              email,
-            })
-            .then((res) => {
-              setMessage(res.data.message);
-            })
-            .catch((err) => {
-              setMessage(err.response.data.message);
-            });
-        }}
-      >
-        Register
-      </button> */}
+      <br />
       <Button
         variant="success"
         onClick={() => {
@@ -92,37 +73,27 @@ const Register = () => {
             })
             .then((res) => {
               setMessage(res.data.message);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: res.data.message,
+                showConfirmButton: false,
+                timer: 1500,
+              });
             })
             .catch((err) => {
               setError(err.response.data.message);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data.message,
+              });
             });
-          if(error){
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: error,
-            })
-          }
-          if(message){
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: message,
-              showConfirmButton: false,
-              timer: 1500
-            });
-          }
         }}
       >
         Register
       </Button>{" "}
-      <p> 
-
-
-
-
-      </p>
-      
+      <p></p>
     </div>
   );
 };

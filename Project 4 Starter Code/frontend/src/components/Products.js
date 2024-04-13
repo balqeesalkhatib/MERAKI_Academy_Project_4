@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { Container } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
 const Products = () => {
   let { id } = useParams();
   const navigate = useNavigate();
@@ -30,11 +31,24 @@ const Products = () => {
       })
       .catch((err) => {
         setError(err.response.data.message);
+        Swal.fire({
+          title:"This Category has no products yet.",
+          width: 600,
+          padding: "3em",
+          color: "green",
+          background: "#000 url(/images/trees.png)",
+          backdrop: `
+            rgba(0,0,0,0.4)
+            url("/images/nyan-cat.gif")
+            left top
+            no-repeat
+          `
+        });
       });
   }, []);
   return (
     <>
-      {/* { product.length && console.log(product)} */}
+     
       <br />
       <br />
       <h2>Products</h2>
@@ -89,6 +103,11 @@ const Products = () => {
                     if (user1 === elem.user) {navigate(`/update/${elem._id}`);}
                     else{
                       setError("You are not the user");
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "You are not the user",
+                      })
                     }
                   }}
                 >
@@ -98,11 +117,11 @@ const Products = () => {
             </div>
           );
         })}
-      <p>{error}</p>
+     
       <br />
       <br />
       <Button
-        variant="dark"
+        variant="success"
         onClick={() => {
           navigate(-1);
         }}

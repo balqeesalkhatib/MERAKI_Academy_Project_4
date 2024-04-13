@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../App';
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { jwtDecode } from "jwt-decode";
 const UpdateProduct = () => {
     let { id } = useParams();
     const navigate = useNavigate();
@@ -12,12 +14,19 @@ const UpdateProduct = () => {
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
     const [error, setError] = useState("");
+    let user;
+  if (token) {
+    user = jwtDecode(token).userId;
+  }
      return (
     <>
-    <div>UpdateProduct</div>
+    <br />
+    <h3>UpdateProduct</h3>
+    <br />
+    
     <input placeholder='Set new name' type='text' className="w-75"  onChange={(e) => {
           setName(e.target.value);
-        }}/><br />
+        }}/><br /><br />
         <input
           placeholder="Set new description"
           type="text"
@@ -27,6 +36,7 @@ const UpdateProduct = () => {
           }}
         />
         <br />
+        <br />
         <input
           placeholder="Set new price "
           type="number"
@@ -35,7 +45,7 @@ const UpdateProduct = () => {
             setPrice(e.target.value);
           }}
         />
-        <br />
+        <br /><br />
         <input
           placeholder="Set new image URL "
           type="text"
@@ -45,20 +55,33 @@ const UpdateProduct = () => {
           }}
         />
         <br />
-        <Button variant="secondary"
+        <br />
+        <br />
+        <Button variant="success"
         onClick={()=>{
-            axios.put(`http://localhost:5000/category/product/${id}`,{ name, image, price, description }, {
+            axios.put(`http://localhost:5000/category/product/${id}`,{ name, image, price, description ,user}, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
               }).then((res)=>{
-                console.log(res.data.message);
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Done ^_^",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
                 setError(res.data.message);
               }) .catch((err) => {
                 setError(err.response.data.message);
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: err.response.data.message,
+                })
               });
         }}>Update</Button>{' '}
-        <p>{error}</p>
+        
     </>
   )
 }

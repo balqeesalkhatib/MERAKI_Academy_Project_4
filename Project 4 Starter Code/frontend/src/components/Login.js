@@ -31,16 +31,7 @@ const Login = () => {
           setPassword(e.target.value);
         }}
       />
-      {/* <button 
-        onClick={()=>{
-          axios.post('http://localhost:5000/users/login',{email,password}) .then((res) => {
-            setMessage(res.data.message);
-            setToken(res.data.token)
-          })
-          .catch((err) => {
-            setMessage(err.response.data.message);
-          });
-        }}>Login</button> */}
+     
       <br /> <br />
       <Button
         variant="success"
@@ -50,26 +41,24 @@ const Login = () => {
             .then((res) => {
               setMessage(res.data.message);
               setToken(res.data.token);
-            })
-            .catch((err) => {
-              setError(err.response.data.message);
-            });
-            if(error){
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: error,
-              })
-            }
-            if(message){
               Swal.fire({
                 position: "center",
                 icon: "success",
-                title: message,
+                title: res.data.message,
                 showConfirmButton: false,
                 timer: 500
               });
-            }
+            })
+            .catch((err) => {
+              setError(err.response.data.message);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data.message,
+              })
+            });
+           
+            
         }}
       >
         Login

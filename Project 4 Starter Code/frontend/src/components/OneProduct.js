@@ -45,7 +45,7 @@ const OneProduct = () => {
       )}
       <p>{error}</p>
       <Button
-        variant="dark"
+        variant="success"
         onClick={() => {
           navigate(-1);
         }}

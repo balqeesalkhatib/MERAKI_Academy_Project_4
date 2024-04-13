@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { AppContext } from "../App";
 import { jwtDecode } from "jwt-decode";
 import Alert from 'react-bootstrap/Alert';
+import Swal from "sweetalert2";
 const AddProduct = () => {
     const { token, setToken } = useContext(AppContext);
   const [name, setName] = useState("");
@@ -33,10 +34,11 @@ const AddProduct = () => {
   }
   return (
     <>
-    <div>AddProduct</div>
+    <br /><br />
     <Card>
         <Card.Body>
           <Card.Title>Add product</Card.Title>
+          <br />
           <input
             placeholder="Name"
             type="text"
@@ -45,7 +47,7 @@ const AddProduct = () => {
               setName(e.target.value);
             }}
           />
-          <br />
+          <br /><br />
           <input
             placeholder="Description"
             type="text"
@@ -54,7 +56,7 @@ const AddProduct = () => {
               setDescription(e.target.value);
             }}
           />
-          <br />
+          <br /><br />
           <input
             placeholder="Price"
             type="number"
@@ -63,7 +65,7 @@ const AddProduct = () => {
               setPrice(e.target.value);
             }}
           />
-          <br />
+          <br /><br />
           <input
             placeholder="Image URL "
             type="text"
@@ -72,8 +74,8 @@ const AddProduct = () => {
               setImage(e.target.value);
             }}
           />
-          <br />
-          category list:
+          <br /><br />
+          Category list:{"    "}{" "}
           <select
             onChange={(e) => {
               setCategory(e.target.value);
@@ -89,10 +91,10 @@ const AddProduct = () => {
                 );
               })}
           </select>
-          <br />
-          {console.log(category)}
+          <br /><br />
+         
           <Button
-            variant="primary"
+            variant="success"
             onClick={() => {
              if(token){
               axios
@@ -108,23 +110,39 @@ const AddProduct = () => {
               .then((res) => {
                 // setError(res.data.result);
                 setError(res.data.message);
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: res.data.message,
+                  showConfirmButton: false,
+                  timer: 1500
+                });
               })
               .catch((err) => {
                 setError(err.response.data.message);
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text:err.response.data.message,
+                })
               });
              }
              else {
               setError('You have to login first')
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text:"You have to login first" ,
+              })
              }
             }}
           >
             ADD
           </Button>
+          <br /><br />
         </Card.Body>
       </Card>
-     {error &&  <Alert  variant="success">
-      <p>{error}</p>
-        </Alert>}
+    
      </>
     
   )
