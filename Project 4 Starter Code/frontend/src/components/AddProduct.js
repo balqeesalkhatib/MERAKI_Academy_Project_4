@@ -123,7 +123,7 @@ const AddProduct = () => {
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
-                  text:err.response.data.message,
+                  text: err.response.data.message,
                 })
               });
              }

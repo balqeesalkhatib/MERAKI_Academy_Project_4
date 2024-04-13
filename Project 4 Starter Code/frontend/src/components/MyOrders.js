@@ -6,11 +6,19 @@ import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const MyOrders = () => {
   const { token, setToken } = useContext(AppContext);
   const [oneOrder, setOneOrder] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
   let id;
   useEffect(() => {
     if (token) {
@@ -27,15 +35,23 @@ const MyOrders = () => {
       })
       .catch((err) => {
         setError(err.response.data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You have no orders yet !",
+        });
       });
   }, []);
   return (
     <>
-      <div>MyOrders</div>I should put them in grid
+      <br />
+      <h2>MyOrders</h2>
+      <br />
+      <br />
       {oneOrder &&
         oneOrder.map((one, i) => {
           return (
-            <div>
+            <div key={i}>
               <Card key={i}>
                 <Card.Body>
                   <Card.Title>{one.status}</Card.Title>
@@ -46,35 +62,54 @@ const MyOrders = () => {
               <Button
                 variant="danger"
                 onClick={() => {
-                  axios
-                    .delete(`http://localhost:5000/order/${one._id}`, {
-                      headers: {
-                        Authorization: `Bearer ${token}`,
-                      },
+                  swalWithBootstrapButtons
+                    .fire({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonText: "Yes, delete it!",
+                      cancelButtonText: "No, cancel!",
+                      reverseButtons: true,
                     })
                     .then((result) => {
-                      setOneOrder(
-                        oneOrder.filter((elem, i) => {
-                          return elem._id !== one._id;
-                        })
-                      );
-                    })
-                    .catch((err) => {
-                      setError(err.response.data.message);
+                      if (result.isConfirmed) {
+                        axios
+                          .delete(`http://localhost:5000/order/${one._id}`, {
+                            headers: {
+                              Authorization: `Bearer ${token}`,
+                            },
+                          })
+                          .then((result) => {
+                            setOneOrder(
+                              oneOrder.filter((elem, i) => {
+                                return elem._id !== one._id;
+                              })
+                            );
+                          })
+                          .catch((err) => {
+                            setError(err.response.data.message);
+                          });
+                        swalWithBootstrapButtons.fire({
+                          title: "Deleted!",
+                          text: "Your file has been deleted.",
+                          icon: "success",
+                        });
+                      } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire({
+                          title: "Cancelled",
+                          text: "Your imaginary file is safe :)",
+                          icon: "error",
+                        });
+                      }
                     });
                 }}
               >
                 X
               </Button>{" "}
-              {console.log(one._id)}
-              {/* <Button
-              onClick={()=>{
-                navigate(`/updateOrder/${one._id}`)
-              }}>Update</Button> */}
             </div>
           );
         })}
-      <p>{error}</p>
       <br />
       <br />
       <Button

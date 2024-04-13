@@ -26,7 +26,9 @@ const Orders = () => {
   }, []);
   return (
     <>
-      <div>Orders</div>
+    <br/>
+          <h2>Orders</h2>
+      <br/>
       {order &&
         order.map((one, i) => {
           return (
@@ -40,13 +42,13 @@ const Orders = () => {
           );
         })}
       <br /> <br />
-      <Button
+      <Button variant="success"
         onClick={() => {
           navigate("/my");
         }}
       >
         My orders
-      </Button>
+      </Button>{" "}{" "}
       <Button
         variant="dark"
         onClick={() => {
@@ -56,13 +58,7 @@ const Orders = () => {
         Back
       </Button>{" "}
       <br />
-      1.all orders must set in backend then show useEffect done
-      <br />
-      <br />
-      2. button for show my orders get by user id
-      <br />
-      <br />
-      3. delete by id
+      <br/>
     </>
   );
 };

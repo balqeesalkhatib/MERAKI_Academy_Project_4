@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { AppContext } from "../App";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
 const AddOrder = () => {
   const [status, setStatus] = useState("");
   const [date, setDate] = useState("");
@@ -52,7 +53,7 @@ const AddOrder = () => {
           />
           <br />
           <br />
-          <Button variant="primary" onClick={()=>{
+          <Button variant="success" onClick={()=>{
             axios.post(`http://localhost:5000/order/`,{status,date,user,product},{
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -60,15 +61,27 @@ const AddOrder = () => {
             }).then((res)=>{
               setError(res.data.message);
               setData1(res.data.result);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: res.data.message,
+                showConfirmButton: false,
+                timer: 500
+              });
             }).catch((err) => {
               setError(err.response.data.message);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data.message,
+              })
             });
           }}>Add</Button>
         </Card.Body>
       </Card>
       {data1 && <><h4>{data1.status}</h4>
       <img src={data1.product}/></>}
-      <p>{error}</p>
+     <br/><br/>
     </>
   );
 };
