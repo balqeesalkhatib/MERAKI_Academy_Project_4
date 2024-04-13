@@ -5,7 +5,8 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { AppContext } from "../App";
-
+import { jwtDecode } from "jwt-decode";
+import Alert from 'react-bootstrap/Alert';
 const AddProduct = () => {
     const { token, setToken } = useContext(AppContext);
   const [name, setName] = useState("");
@@ -15,6 +16,7 @@ const AddProduct = () => {
   const [category1, setCategory1] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState("");
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/category")
@@ -25,6 +27,10 @@ const AddProduct = () => {
         setName(err.response.data.message);
       });
   }, []);
+  let user;
+  if (token) {
+    user = jwtDecode(token).userId;
+  }
   return (
     <>
     <div>AddProduct</div>
@@ -88,30 +94,38 @@ const AddProduct = () => {
           <Button
             variant="primary"
             onClick={() => {
+             if(token){
               axios
-                .post(
-                  `http://localhost:5000/category/${category}/product`,
-                  { name, image, price, description, category },
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                )
-                .then((res) => {
-                  // setError(res.data.result);
-                  setError(res.data.message);
-                })
-                .catch((err) => {
-                  setError(err.response.data.message);
-                });
+              .post(
+                `http://localhost:5000/category/${category}/product`,
+                { name, image, price, description, category, user },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((res) => {
+                // setError(res.data.result);
+                setError(res.data.message);
+              })
+              .catch((err) => {
+                setError(err.response.data.message);
+              });
+             }
+             else {
+              setError('You have to login first')
+             }
             }}
           >
             ADD
           </Button>
         </Card.Body>
       </Card>
-      <p>{error}</p></>
+     {error &&  <Alert  variant="success">
+      <p>{error}</p>
+        </Alert>}
+     </>
     
   )
 }

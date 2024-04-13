@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 const Register = () => {
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
@@ -9,12 +10,14 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   return (
     <div>
       <br /> <br />
       <input
         placeholder="First Name"
-        type="text" className="form-control"
+        type="text"
+        className="form-control"
         onChange={(e) => {
           setFirst(e.target.value);
         }}
@@ -22,7 +25,8 @@ const Register = () => {
       <br />
       <input
         placeholder="Last Name"
-        type="text"  className="form-control"
+        type="text"
+        className="form-control"
         onChange={(e) => {
           setLast(e.target.value);
         }}
@@ -30,7 +34,8 @@ const Register = () => {
       <br />
       <input
         placeholder="Country"
-        type="text"  className="form-control"
+        type="text"
+        className="form-control"
         onChange={(e) => {
           setCountry(e.target.value);
         }}
@@ -38,7 +43,8 @@ const Register = () => {
       <br />
       <input
         placeholder="Email"
-        type="email"  className="form-control"
+        type="email"
+        className="form-control"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
@@ -46,7 +52,8 @@ const Register = () => {
       <br />
       <input
         placeholder="Password"
-        type="password"  className="form-control"
+        type="password"
+        className="form-control"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
@@ -72,7 +79,9 @@ const Register = () => {
       >
         Register
       </button> */}
-      <Button variant="success" onClick={() => {
+      <Button
+        variant="success"
+        onClick={() => {
           axios
             .post("http://localhost:5000/users/register", {
               firstName,
@@ -85,10 +94,35 @@ const Register = () => {
               setMessage(res.data.message);
             })
             .catch((err) => {
-              setMessage(err.response.data.message);
+              setError(err.response.data.message);
             });
-        }}>Register</Button>{' '}
-      <p>{message}</p>
+          if(error){
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: error,
+            })
+          }
+          if(message){
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: message,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        }}
+      >
+        Register
+      </Button>{" "}
+      <p> 
+
+
+
+
+      </p>
+      
     </div>
   );
 };

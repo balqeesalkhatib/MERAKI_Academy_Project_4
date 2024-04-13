@@ -5,11 +5,7 @@ import { AppContext } from "../App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { ListGroup } from "react-bootstrap";
-import Alert from 'react-bootstrap/Alert';
+import Swal from "sweetalert2";
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -28,8 +24,8 @@ const Category = () => {
   }, []);
   return (
     <>
-    <br/>
-   <p>{error}</p>
+      <br />
+      <p>{error}</p>
       {/* {id.length && console.log(id)} */}
       {category.length &&
         category.map((elem, index) => {
@@ -37,16 +33,16 @@ const Category = () => {
             <div
               key={index}
               onClick={() => {
-                if(token){
+                if (token) {
                   navigate(`/product/${elem._id}`);
-                }
-                else{
+                } else {
                   // setError('You have to login')
-                 setError( <Alert  variant='warning'>
-                 <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-               <p>Warning !
-               You have to login.</p>
-             </Alert>)
+
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops! You got an error!",
+                    text: "Warning !    You have to login.",
+                  });
                 }
               }}
               className="modal show"
@@ -86,8 +82,6 @@ const Category = () => {
       >
         Back
       </Button>{" "}
-     
-      
     </>
   );
 };
