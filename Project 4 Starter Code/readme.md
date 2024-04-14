@@ -77,13 +77,19 @@ Now app ready to use
 
 ## 🎈 Usage <a name="usage"></a>
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-Ex.
+- You don't have to register to see the main features of our app.
+- You can't add, update or remove any category of our app, you will found all the categories you want, you can add update or remove products in the categories.
+- You can't  update or remove any orders or products if you are not the owner.
+<img width="400px" height="100px" src="./Screenshot_4.png" >
 
-- You don't have to register to navigate our web app
-- You can click on the **Home** tab provided in the navigation bar to view the home section
-- You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
+- You can click on the **Home** tab provided in the navigation bar to view the home section, so you can add product and orders, also show all orders.
+<img width="400px" height="100px" src="./Screenshot_3.png" >
+
+- You can click on the **Category** tab provided in the navigation bar to view the category section, which contain all the categories and simple description.
+
+
+
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
