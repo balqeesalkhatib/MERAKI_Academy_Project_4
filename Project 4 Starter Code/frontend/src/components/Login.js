@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../App";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
+import Form from "react-bootstrap/Form";
 const Login = () => {
   const { token, setToken } = useContext(AppContext);
   const [email, setEmail] = useState("");
@@ -14,24 +15,28 @@ const Login = () => {
     <div>
       <br />
       <br />
-      <input
-        placeholder="Email"
-        type="email"
-        className="w-75"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <br /> <br />
-      <input
-        placeholder="Password"
-        type="password"
-        className="w-75"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-     
+      <Form.Floating className="mb-3">
+        <Form.Control
+          id="floatingInputCustom"
+          type="email"
+          placeholder="name@example.com"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <label htmlFor="floatingInputCustom">Email address</label>
+      </Form.Floating>
+      <Form.Floating>
+        <Form.Control
+          id="floatingPasswordCustom"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <label htmlFor="floatingPasswordCustom">Password</label>
+      </Form.Floating>
       <br /> <br />
       <Button
         variant="success"
@@ -46,7 +51,7 @@ const Login = () => {
                 icon: "success",
                 title: res.data.message,
                 showConfirmButton: false,
-                timer: 500
+                timer: 1500,
               });
             })
             .catch((err) => {
@@ -55,16 +60,12 @@ const Login = () => {
                 icon: "error",
                 title: "Oops...",
                 text: err.response.data.message,
-              })
+              });
             });
-           
-            
         }}
       >
         Login
       </Button>{" "}
-      
-      
     </div>
   );
 };

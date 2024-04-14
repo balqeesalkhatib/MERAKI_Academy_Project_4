@@ -1,18 +1,18 @@
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
+ <img width="400px" height="100px" src="./Screenshot_1.png" alt="Project logo">
  </a>
 </p>
 
-<h3 align="center">Project Title
+<h3 align="center">Exchange Zone
 </h3>
 
 ---
 
-<p align="center"> An awesome Project to describe README 
-    <br> 
-<a href=''>Demo</a>
-    <br> 
+<p align="center">
+     Exchange Zone is an item exchange application, where offers adding products for multiple categories. Moreover, adding orders for rent, sell and even exchange.
+
+    
 </p>
 
 ## 📝 Table of Contents
@@ -89,8 +89,9 @@ Ex.
 
 ## User Story <a name = "#user_story"></a>
 
-Your trello board link
-<a href=''>Trello</a>
+You can view the details of trello board below:
+<br/>
+<a href='https://trello.com/b/gEKgHjeX/project-4'>Trello</a>
 
 ## Data Flow <a name = "#data_flow"></a>
 

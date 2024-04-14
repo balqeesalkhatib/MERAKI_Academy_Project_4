@@ -21,7 +21,7 @@ const AddOrder = () => {
  
      return (
     <>
-      <div>AddOrder</div>
+      <br/><br/>
       <Card>
         <Card.Body>
           <Card.Title>Add Order</Card.Title>

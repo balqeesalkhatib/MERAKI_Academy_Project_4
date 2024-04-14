@@ -5,13 +5,15 @@ import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const Orders = () => {
   const [error, setError] = useState("");
   const { token, setToken } = useContext(AppContext);
   const [order, setOrder] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    axios
+    if (token){
+      axios
       .get("http://localhost:5000/order/", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,6 +25,15 @@ const Orders = () => {
       .catch((err) => {
         setError(err.response.data.message);
       });
+    }
+    else{
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "You have to login first",
+      })
+    }
+  
   }, []);
   return (
     <>

@@ -23,7 +23,7 @@ const MyOrders = () => {
   useEffect(() => {
     if (token) {
       id = jwtDecode(token).userId;
-    }
+    
     axios
       .get(`http://localhost:5000/order/${id}`, {
         headers: {
@@ -40,7 +40,14 @@ const MyOrders = () => {
           title: "Oops...",
           text: "You have no orders yet !",
         });
-      });
+      });}
+      else{
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "You have to login first",
+        })
+      }
   }, []);
   return (
     <>
