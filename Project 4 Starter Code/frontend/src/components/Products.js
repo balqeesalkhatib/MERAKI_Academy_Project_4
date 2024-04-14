@@ -18,7 +18,13 @@ const Products = () => {
   if (token) {
     user1 = jwtDecode(token).userId;
   }
-
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
   useEffect(() => {
     axios
       .get(`http://localhost:5000/category/${id}/product`, {
@@ -74,7 +80,19 @@ const Products = () => {
                 <Button
                   variant="danger"
                   onClick={() => {
-                    axios
+                    swalWithBootstrapButtons
+                    .fire({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonText: "Yes, delete it!",
+                      cancelButtonText: "No, cancel!",
+                      reverseButtons: true,
+                    })
+                    .then((result) => {
+                      if (result.isConfirmed) {
+                        axios
                       .delete(
                         `http://localhost:5000/category/product/${elem._id}`,
                         {
@@ -93,6 +111,39 @@ const Products = () => {
                       .catch((err) => {
                         setError(err.response.data.message);
                       });
+                        swalWithBootstrapButtons.fire({
+                          title: "Deleted!",
+                          text: "Your file has been deleted.",
+                          icon: "success",
+                        });
+                      } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire({
+                          title: "Cancelled",
+                          text: "Your imaginary file is safe :)",
+                          icon: "error",
+                        });
+                      }
+                    });
+                    
+                    // axios
+                    //   .delete(
+                    //     `http://localhost:5000/category/product/${elem._id}`,
+                    //     {
+                    //       headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //       },
+                    //     }
+                    //   )
+                    //   .then((result) => {
+                    //     setProduct(
+                    //       product.filter((one, i) => {
+                    //         return one._id !== elem._id;
+                    //       })
+                    //     );
+                    //   })
+                    //   .catch((err) => {
+                    //     setError(err.response.data.message);
+                    //   });
                   }}
                 >
                   Delete

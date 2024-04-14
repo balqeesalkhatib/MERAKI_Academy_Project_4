@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
 import Swal from "sweetalert2";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 const Category = () => {
   const { token, setToken } = useContext(AppContext);
   const [category, setCategory] = useState("");
@@ -50,18 +51,17 @@ const Category = () => {
             >
               {/* <Container>
               <Row>
-              <Col  md={4}>
-                <ListGroup>
-                  <ListGroup.Item>
-                  {elem.name}
-                <Image src={elem.image} />
-                {elem.description}
-                  </ListGroup.Item>
-               
-                </ListGroup>
+              <Col  >
+                
+                {elem.name}
+              <Image src={elem.image} />
+              {elem.description}
+                
               </Col>
                 </Row> 
               </Container> */}
+
+              
               <Modal.Dialog>
                 <Modal.Header>
                   <Modal.Title>{elem.name}</Modal.Title>

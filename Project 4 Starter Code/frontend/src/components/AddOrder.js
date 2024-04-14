@@ -13,6 +13,9 @@ const AddOrder = () => {
   const [error, setError] = useState("");
   const [product, setProduct] = useState("");
   let user;
+  if(token){
+    user=(jwtDecode(token).userId);
+   }
   useEffect(()=>{
     if(token){
      user=(jwtDecode(token).userId);
@@ -53,6 +56,7 @@ const AddOrder = () => {
           />
           <br />
           <br />
+        {console.log(user)}
           <Button variant="success" onClick={()=>{
             axios.post(`http://localhost:5000/order/`,{status,date,user,product},{
               headers: {
