@@ -27,9 +27,10 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
 
-Ex. Are you looking for a quick and easy way to action, action, and action? The **(name of application)** is the greatest and most accurate application to do this for you. It helps you to **(list of activities)**. The **(name of application)** provides a simple design to ensure having the best user experience.
+
+ Are you looking for an app combines between item exchange  and E-commerce? we provide an excellent app that goal to enhance the community awareness by exchange goods instead of discarding them. The exch is the greatest and most accurate application to do this for you. It helps you to exchange old goods.  Exchange useless things you have with what ever you want, remember things that you think are useless, others deem valuable.
+ The Exchange zone provides a simple design to ensure having the best user experience.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -37,10 +38,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Visual Studio Code follow this <a href=''>link</a> to install.
-- Git Bash follow this <a href=''>link</a> to install.
-- MongoDB follow this <a href=''>link</a> to install.
-- Node.js follow this <a href=''>link</a> to install.
+- Visual Studio Code follow this <a href='https://code.visualstudio.com/download'>link</a> to install.
+- Git Bash follow this <a href='https://git-scm.com/downloads'>link</a> to install.
+- MongoDB follow this <a href='https://www.mongodb.com/try/download/community-kubernetes-operator'>link</a> to install.
+- Node.js follow this <a href='https://nodejs.org/en/download'>link</a> to install.
 
 ### Installing:
 
@@ -55,14 +56,18 @@ git clone https://github.com/your_username_/Project-Name.git
 ```
 npm i
 ```
+3. You have to install sweetalert2, react-bootstrap, jwt-decode
 
-3. Run server using git bash inside backend folder
+```
+npm i sweetalert2  react-bootstrap  jwt-decode
+```
+4. Run server using git bash inside backend folder
 
 ```
 npm run dev
 ```
 
-4. Run application using git bash inside frontend folder
+5. Run application using git bash inside frontend folder
 
 ```
 npm run start
