@@ -56,7 +56,8 @@ const MyOrders = () => {
       <br />
       <br />
       {oneOrder &&
-        oneOrder.map((one, i) => {
+        <div className="order">
+          {oneOrder.map((one, i) => {
           return (
             <div key={i}>
               <Card key={i}>
@@ -117,6 +118,7 @@ const MyOrders = () => {
             </div>
           );
         })}
+          </div>}
       <br />
       <br />
       <Button

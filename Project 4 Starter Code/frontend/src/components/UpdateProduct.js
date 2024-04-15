@@ -14,6 +14,7 @@ const UpdateProduct = () => {
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
     const [error, setError] = useState("");
+    
     let user;
   if (token) {
     user = jwtDecode(token).userId;
@@ -81,7 +82,14 @@ const UpdateProduct = () => {
                 })
               });
         }}>Update</Button>{' '}
-        
+         <Button
+        variant="dark"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>{" "}
     </>
   )
 }

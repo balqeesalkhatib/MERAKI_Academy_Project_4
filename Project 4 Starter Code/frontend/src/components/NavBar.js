@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 const NavBar = () => {
   return (
-    <>
+    <div >
      <Navbar expand="lg" className="navbar navbar-dark bg-success" >
      <Container> 
      <Nav.Link as={Link} to="/register">Register</Nav.Link>
@@ -16,7 +16,7 @@ const NavBar = () => {
      </Container>
      </Navbar>
       
-    </>
+    </div>
   );
 };
 

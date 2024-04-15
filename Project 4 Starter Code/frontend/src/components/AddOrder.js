@@ -5,7 +5,9 @@ import { AppContext } from "../App";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const AddOrder = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState("");
   const [date, setDate] = useState("");
   const [data1, setData1] = useState("");
@@ -86,6 +88,14 @@ const AddOrder = () => {
       {data1 && <><h4>{data1.status}</h4>
       <img src={data1.product}/></>}
      <br/><br/>
+     <Button
+        variant="dark"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>{" "}
     </>
   );
 };

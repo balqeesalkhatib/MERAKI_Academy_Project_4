@@ -29,7 +29,8 @@ const Category = () => {
       <p>{error}</p>
       {/* {id.length && console.log(id)} */}
       {category.length &&
-        category.map((elem, index) => {
+       <div className="cat">
+        { category.map((elem, index) => {
           return (
             <div
               key={index}
@@ -49,20 +50,7 @@ const Category = () => {
               className="modal show"
               style={{ display: "block", position: "initial" }}
             >
-              {/* <Container>
-              <Row>
-              <Col  >
-                
-                {elem.name}
-              <Image src={elem.image} />
-              {elem.description}
-                
-              </Col>
-                </Row> 
-              </Container> */}
-
-              
-              <Modal.Dialog>
+                          <Modal.Dialog>
                 <Modal.Header>
                   <Modal.Title>{elem.name}</Modal.Title>
                 </Modal.Header>
@@ -74,6 +62,7 @@ const Category = () => {
             </div>
           );
         })}
+        </div>}
       <Button
         variant="dark"
         onClick={() => {

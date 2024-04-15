@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Category from "./Category";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -17,7 +17,7 @@ const AddProduct = () => {
   const [category1, setCategory1] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("http://localhost:5000/category")
@@ -142,7 +142,16 @@ const AddProduct = () => {
           <br /><br />
         </Card.Body>
       </Card>
-    
+      <br />
+      <br />
+      <Button
+        variant="dark"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>{" "}
      </>
     
   )

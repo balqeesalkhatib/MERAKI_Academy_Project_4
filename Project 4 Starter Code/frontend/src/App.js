@@ -18,12 +18,23 @@ import Orders from "./components/Orders";
 import MyOrders from "./components/MyOrders";
 import Logout from "./components/Logout";
 import Image from "react-bootstrap/Image";
+import Swal from "sweetalert2";
 export const AppContext = createContext();
 const App = () => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
+  let timerInterval;
   useEffect(() => {
-    navigate("/login");
+    navigate("/home");
+    Swal.fire({
+      position: "center",
+     title: "Welcome <3",
+     color:"rgb(21, 165, 110)",
+     background:"beige",
+     text:"Be ready to share what you have and discover new values that alternative options may bring",
+      showConfirmButton: false,
+      timer: 5000,
+    });
   }, []);
   return (
     <AppContext.Provider value={{ token, setToken }}>
@@ -32,7 +43,8 @@ const App = () => {
         <h1 className="heading">Zone</h1>
         <Image  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbNYomIzCCFtFYIg97xTEsCzccrke-S_vd4w&s" ></Image>
         <br/>
-        <NavBar />
+        <NavBar className='nav'/>
+       
         <Routes>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/category" element={<Category />}></Route>

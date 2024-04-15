@@ -41,7 +41,8 @@ const Orders = () => {
           <h2>Orders</h2>
       <br/>
       {order &&
-        order.map((one, i) => {
+        <div className="order">
+          {order.map((one, i) => {
           return (
             <Card key={i}>
               <Card.Body>
@@ -52,6 +53,7 @@ const Orders = () => {
             </Card>
           );
         })}
+          </div>}
       <br /> <br />
       <Button variant="success"
         onClick={() => {
