@@ -7,10 +7,34 @@ import Swal from "sweetalert2";
 import Form from "react-bootstrap/Form";
 const Login = () => {
   const { token, setToken } = useContext(AppContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("guest@gmail.com");
+  const [password, setPassword] = useState("gest123");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const loginFun = () => {
+    console.log(email, password);
+    axios
+      .post("http://localhost:5000/users/login", { email, password })
+      .then((res) => {
+        setMessage(res.data.message);
+        setToken(res.data.token);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
+      });
+  };
   return (
     <div>
       <br />
@@ -41,33 +65,22 @@ const Login = () => {
       <Button
         variant="success"
         onClick={() => {
-          axios
-            .post("http://localhost:5000/users/login", { email, password })
-            .then((res) => {
-              setMessage(res.data.message);
-              setToken(res.data.token);
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: res.data.message,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            })
-            .catch((err) => {
-              setError(err.response.data.message);
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: err.response.data.message,
-              });
-            });
+          loginFun();
         }}
       >
         Login
       </Button>{" "}
+      <Button
+        onClick={() => {
+          loginFun();
+        }}
+      >
+        Guest Account
+      </Button>
     </div>
   );
 };
 
 export default Login;
+// guest@gmail.com
+// gest123
