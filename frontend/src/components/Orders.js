@@ -14,7 +14,7 @@ const Orders = () => {
   useEffect(() => {
     if (token){
       axios
-      .get("http://localhost:5000/order/", {
+      .get("https://meraki-academy-project-4-1.onrender.com/order/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

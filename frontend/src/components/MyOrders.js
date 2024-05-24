@@ -25,7 +25,7 @@ const MyOrders = () => {
       id = jwtDecode(token).userId;
     
     axios
-      .get(`http://localhost:5000/order/${id}`, {
+      .get(`https://meraki-academy-project-4-1.onrender.com/order/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const MyOrders = () => {
                     .then((result) => {
                       if (result.isConfirmed) {
                         axios
-                          .delete(`http://localhost:5000/order/${one._id}`, {
+                          .delete(`https://meraki-academy-project-4-1.onrender.com/order/${one._id}`, {
                             headers: {
                               Authorization: `Bearer ${token}`,
                             },

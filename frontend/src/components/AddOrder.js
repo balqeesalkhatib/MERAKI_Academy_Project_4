@@ -60,7 +60,7 @@ const AddOrder = () => {
           <br />
         {console.log(user)}
           <Button variant="success" onClick={()=>{
-            axios.post(`http://localhost:5000/order/`,{status,date,user,product},{
+            axios.post(`https://meraki-academy-project-4-1.onrender.com/order/`,{status,date,user,product},{
               headers: {
                 Authorization: `Bearer ${token}`,
               },

@@ -27,7 +27,7 @@ const Products = () => {
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/category/${id}/product`, {
+      .get(`https://meraki-academy-project-4-1.onrender.com/category/${id}/product`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ const Products = () => {
                       if (result.isConfirmed) {
                         axios
                       .delete(
-                        `http://localhost:5000/category/product/${elem._id}`,
+                        `https://meraki-academy-project-4-1.onrender.com/category/product/${elem._id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -127,7 +127,7 @@ const Products = () => {
                     
                     // axios
                     //   .delete(
-                    //     `http://localhost:5000/category/product/${elem._id}`,
+                    //     `https://meraki-academy-project-4-1.onrender.com/category/product/${elem._id}`,
                     //     {
                     //       headers: {
                     //         Authorization: `Bearer ${token}`,

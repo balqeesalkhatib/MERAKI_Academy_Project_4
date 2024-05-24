@@ -64,7 +64,7 @@ const Register = () => {
         variant="success"
         onClick={() => {
           axios
-            .post("http://localhost:5000/users/register", {
+            .post("https://meraki-academy-project-4-1.onrender.com/users/register", {
               firstName,
               lastName,
               country,

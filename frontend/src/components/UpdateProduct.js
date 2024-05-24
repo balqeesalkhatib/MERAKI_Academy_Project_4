@@ -60,7 +60,7 @@ const UpdateProduct = () => {
         <br />
         <Button variant="success"
         onClick={()=>{
-            axios.put(`http://localhost:5000/category/product/${id}`,{ name, image, price, description ,user}, {
+            axios.put(`https://meraki-academy-project-4-1.onrender.com/category/product/${id}`,{ name, image, price, description ,user}, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },

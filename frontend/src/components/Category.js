@@ -15,7 +15,7 @@ const Category = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/category")
+      .get("https://meraki-academy-project-4-1.onrender.com/category")
       .then((res) => {
         setCategory(res.data.result);
       })

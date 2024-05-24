@@ -14,7 +14,7 @@ const Login = () => {
   const loginFun = () => {
     console.log(email, password);
     axios
-      .post("http://localhost:5000/users/login", { email, password })
+      .post("https://meraki-academy-project-4-1.onrender.com/users/login", { email, password })
       .then((res) => {
         setMessage(res.data.message);
         setToken(res.data.token);

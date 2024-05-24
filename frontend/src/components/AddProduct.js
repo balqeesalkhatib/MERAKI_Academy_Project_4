@@ -20,7 +20,7 @@ const AddProduct = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/category")
+      .get("https://meraki-academy-project-4-1.onrender.com/category")
       .then((res) => {
         setCategory1(res.data.result);
       })
@@ -99,7 +99,7 @@ const AddProduct = () => {
              if(token){
               axios
               .post(
-                `http://localhost:5000/category/${category}/product`,
+                `https://meraki-academy-project-4-1.onrender.com/category/${category}/product`,
                 { name, image, price, description, category, user },
                 {
                   headers: {

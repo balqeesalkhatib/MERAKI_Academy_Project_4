@@ -14,7 +14,7 @@ const OneProduct = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/category/product/${id}`, {
+      .get(`https://meraki-academy-project-4-1.onrender.com/category/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
